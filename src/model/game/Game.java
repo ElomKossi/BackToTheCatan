@@ -1,7 +1,8 @@
 package model.game;
 
 import model.player.*;
-import view.*;
+import view.game.*;
+import view.mainBoard.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

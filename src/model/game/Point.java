@@ -6,13 +6,14 @@ import model.player.*;
 import model.game.*;
 import model.coordinate.*;
 import view.*;
+import view.mainBoard.ViewPoint;
 
 public class Point {
 
     private CPoint coord;
     private BuildPoint m_type;
     private Player proprio; //Si null, le point n'est pas encore utilisé
-    private VuePoint m_vue;
+    private ViewPoint m_vue;
     private Board board;
 
     public Point(CPoint coord, BuildPoint type, Player propietaire, Board plateau)
@@ -106,12 +107,12 @@ public class Point {
         return coord.toString();
     }
 
-    public void setVue(VuePoint vue)
+    public void setVue(ViewPoint vue)
     {
         m_vue = vue;
     }
 
-    public VuePoint getVue()
+    public ViewPoint getVue()
     {
         return m_vue;
     }

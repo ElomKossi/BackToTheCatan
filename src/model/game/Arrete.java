@@ -3,6 +3,7 @@ package model.game;
 import model.coordinate.*;
 import model.player.*;
 import view.*;
+import view.mainBoard.ViewArrete;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public class Arrete {
     private Player player;
     private Board board;
 
-    private VueArete m_vue;
+    private ViewArrete vue;
 
     public Arrete(CArrete coord, BuildArrete type, Player player, Board board)
     {
@@ -46,15 +47,15 @@ public class Arrete {
         return typeA;
     }
 
-    public void setVue(VueArete vue)
+    public void setVue(ViewArrete vue)
     {
-        m_vue = vue;
+        vue = vue;
     }
 
-    public VueArete getVue()
+    public ViewArrete getVue()
     {
 
-        return m_vue;
+        return vue;
     }
 
     public void construire(Player player, BuildArrete type)

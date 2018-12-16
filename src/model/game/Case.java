@@ -2,7 +2,8 @@ package model.game;
 
 import model.coordinate.*;
 import model.player.*;
-import view.*;
+import view.game.*;
+import view.mainBoard.*;
 
 public class Case {
 

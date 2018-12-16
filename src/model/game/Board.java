@@ -227,7 +227,7 @@ public class Board {
         String[] tab = null;
         try
         {
-            BufferedReader reader = new BufferedReader(new FileReader("ressources/PlateauxInitiaux/plateau2.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("image/BoardPlan/board_1.txt"));
             for (int i = 0; i < m_size; i++)
             {
                 tab = reader.readLine().split(" ");
@@ -257,7 +257,7 @@ public class Board {
         String[] tab = null;
         try
         {
-            BufferedReader reader = new BufferedReader(new FileReader("ressources/PlateauxInitiaux/plateau1valeurs.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("image/BoardPlan/board_2.txt"));
             for (int i = 0; i < m_size; i++)
             {
                 tab = reader.readLine().split(" ");
@@ -349,7 +349,7 @@ public class Board {
         return res;
     }
 
-    public ArrayList<Arrete> getAdjacentArrete(Point point)
+    public ArrayList<Arrete> getAdjacentArete(Point point)
     {
         ArrayList<Arrete> listArrete = new ArrayList<>(3);
         for (Arrete a : arretes.values())
