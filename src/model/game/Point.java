@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import model.player.*;
 import model.game.*;
 import model.coordinate.*;
-import view.*;
+import view.mainBoard.*;
 import view.mainBoard.ViewPoint;
 
 public class Point {
 
     private CPoint coord;
-    private BuildPoint m_type;
+    private BuildPoint typeP;
     private Player proprio; //Si null, le point n'est pas encore utilisé
     private ViewPoint m_vue;
     private Board board;
 
-    public Point(CPoint coord, BuildPoint type, Player propietaire, Board plateau)
+    public Point(CPoint coor, BuildPoint type, Player propietaire, Board plateau)
     {
-        coord = coord;
-        m_type = type;
+        coord = coor;
+        typeP = type;
         proprio = propietaire;
         board = plateau;
     }
@@ -36,7 +36,7 @@ public class Point {
 
     public BuildPoint getType()
     {
-        return m_type;
+        return typeP;
     }
 
     public CPoint getCoo()
@@ -46,7 +46,7 @@ public class Point {
 
     public void construire(Player player, BuildPoint type)
     {
-        m_type = type;
+        typeP = type;
         proprio = player;
     }
 
@@ -60,15 +60,15 @@ public class Point {
         {// Chez un autre joueur
             return "Ce point appartient déjà à un autre joueur";
         }
-        else if(m_type == BuildPoint.Vide && type==BuildPoint.SuperDeloreans)
+        else if(typeP == BuildPoint.Vide && type==BuildPoint.SuperDeloreans)
         {// ville sur rien
             return "Une Ville ne peut être construite que sur un Village déjà existant";
         }
-        else if(m_type == BuildPoint.SuperDeloreans && type == BuildPoint.Deloreans)
+        else if(typeP == BuildPoint.SuperDeloreans && type == BuildPoint.Deloreans)
         {// village sur ville
             return "Vous ne pouvez pas construire de Village sur une Ville";
         }
-        else if(type == m_type)
+        else if(type == typeP)
         {// t sur t
             return "Ce point est déjà de type " + type;
         }

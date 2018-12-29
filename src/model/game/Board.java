@@ -4,10 +4,9 @@ import model.coordinate.*;
 import model.player.*;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Board {
 
@@ -16,18 +15,15 @@ public class Board {
     private HashMap<CCase, Case> cases;
     private HashMap<CArrete, Arrete> arretes;
     private HashMap<CPoint, Point> points;
-    private int m_size;
+    private int size;
 
-
-    public Board(Epoch ep, int size)
+    public Board(Epoch ep, int size1)
     {
         epoque = ep;
-        m_size = size;
+        size = size1;
         init();
         coordVoleur = new CCase(0, 0, ep) ;
     }
-
-
 
     private void init()
     {
@@ -48,9 +44,9 @@ public class Board {
         CCase coord;
         Case tuile;
         Resources res;
-        for (int j = 1; j <= m_size; j++)
+        for (int j = 1; j <= size; j++)
         {
-            for (int i = 1; i <= m_size; i++)
+            for (int i = 1; i <= size; i++)
             {
                 coord = new CCase(j - 4, i - 4, epoque);
                 if ((res = getResources(coord, listRessources)) != null)
@@ -78,18 +74,23 @@ public class Board {
             cooPoint = new CPoint(coo.west(), coo, coo.northWest());
             if (!points.containsKey(cooPoint))
                 points.put(cooPoint, new Point(cooPoint,this));
+
             cooPoint = new CPoint(coo.northWest(), coo.northEast(), coo);
             if (!points.containsKey(cooPoint))
                 points.put(cooPoint, new Point(cooPoint,this));
+
             cooPoint = new CPoint(coo, coo.east(), coo.northEast());
             if (!points.containsKey(cooPoint))
                 points.put(cooPoint, new Point(cooPoint,this));
+
             cooPoint = new CPoint(coo, coo.east(), coo.southEast());
             if (!points.containsKey(cooPoint))
                 points.put(cooPoint, new Point(cooPoint,this));
+
             cooPoint = new CPoint(coo.southWest(), coo.southEast(), coo);
             if (!points.containsKey(cooPoint))
                 points.put(cooPoint, new Point(cooPoint,this));
+
             cooPoint = new CPoint(coo.west(), coo, coo.southWest());
             if (!points.containsKey(cooPoint))
                 points.put(cooPoint, new Point(cooPoint,this));
@@ -120,7 +121,8 @@ public class Board {
 
     public List<Case> getListCases()
     {
-        return new ArrayList<>(cases.values());
+        ArrayList<Case> cases1 = new ArrayList<Case>(cases.values());
+        return cases1;
     }
 
     public HashMap<CCase, Case> getCases()
@@ -130,12 +132,14 @@ public class Board {
 
     public List<Arrete> getArretes()
     {
-        return new ArrayList<>(arretes.values());
+        ArrayList<Arrete> arrete1 = new ArrayList<Arrete>(arretes.values());
+        return arrete1;
     }
 
     public List<Point> getPoints()
     {
-        return new ArrayList<>(points.values());
+        ArrayList<Point> point1 = new ArrayList<>(points.values());
+        return point1;
     }
 
     public Epoch getEpoch()
@@ -192,21 +196,21 @@ public class Board {
         else if (epoque == Epoch._1985)
         {
             r1 = Resources.Moteur;
-            r2 = Resources.SabreLaser;
+            r2 = Resources.Laser;
         }
         else
         {
             r1 = Resources.Plutonium;
             r2 = Resources.Kryptonite;
         }
-        switch (list[coordCase.getLine() + m_size/2][coordCase.getColumn() + m_size/2])
+        switch (list[coordCase.getLine() + size/2][coordCase.getColumn() + size/2])
         {
             case 0:
                 return null;
             case 1:
-                return Resources.Autoroute;
+                return Resources.Vortex;
             case 2:
-                return Resources.Metal;
+                return Resources.Bois;
             case 3:
                 return r1;
         }
@@ -223,15 +227,15 @@ public class Board {
         //Warning: Le fichier doit contenir une matrice 7x7 avec un getNombre puis un espace, si on modifie la taille rien ne vas plus !
         // Crée un tableau avec les ressources présentes dans chaque case
         // Le tableau tab est initialisé à partir d'un fichier
-        int[][] list = new int[m_size][m_size];
+        int[][] list = new int[size][size];
         String[] tab = null;
         try
         {
-            BufferedReader reader = new BufferedReader(new FileReader("image/BoardPlan/board_1.txt"));
-            for (int i = 0; i < m_size; i++)
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/joke/IdeaProjects/BackToTheCatan/src/image/BoardPlan/board1"));
+            for (int i = 0; i < size; i++)
             {
                 tab = reader.readLine().split(" ");
-                for (int j = 0; j < m_size; j++)
+                for (int j = 0; j < size; j++)
                 {
                     list[i][j] = Integer.parseInt(tab[j]);
                 }
@@ -253,15 +257,15 @@ public class Board {
         //Warning: Le fichier doit contenir ne matrice 7x7 avec un getNombre puis un espace, si on modifie la taille rien ne vas plus !
         // Crée un tableau avec les ressources présentes dans chaque case
         // Le tableau tab est initialisé à partir d'un fichier
-        int[][] list = new int[m_size][m_size];
+        int[][] list = new int[size][size];
         String[] tab = null;
         try
         {
-            BufferedReader reader = new BufferedReader(new FileReader("image/BoardPlan/board_2.txt"));
-            for (int i = 0; i < m_size; i++)
+            BufferedReader reader = new BufferedReader(new FileReader("/Users/joke/IdeaProjects/BackToTheCatan/src/image/BoardPlan/board2"));
+            for (int i = 0; i < size; i++)
             {
                 tab = reader.readLine().split(" ");
-                for (int j = 0; j < m_size; j++)
+                for (int j = 0; j < size; j++)
                 {
                     list[i][j] = Integer.parseInt(tab[j]);
                 }
@@ -284,7 +288,7 @@ public class Board {
         Case c = cases.get(coo);
         if(c == null)
         {
-            c = new Case(coo,Resources.Autoroute,0);
+            c = new Case(coo,Resources.Vortex,0);
         }
 
         return c;
@@ -297,7 +301,7 @@ public class Board {
                 for (CCase coordCase : new CCase[]{pt.getCoo().getLeft(), pt.getCoo().getRight(), pt.getCoo().getVertical()})
                 {
                     Case tuile = cases.get(coordCase);
-                    if (tuile.getRessource() != Resources.Autoroute && tuile.getVal() == val && !(tuile.isVoleurPresent()))
+                    if (tuile.getRessource() != Resources.Vortex && tuile.getVal() == val && !(tuile.isVoleurPresent()))
                     {
                         pt.getPlayer().recevoirRessource(tuile.getRessource());
                         if (pt.getType() == BuildPoint.SuperDeloreans)

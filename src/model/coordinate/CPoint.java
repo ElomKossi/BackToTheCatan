@@ -1,5 +1,7 @@
 package model.coordinate;
 
+import java.util.Objects;
+
 public class CPoint {
 
     private CCase left, right, vertical;
@@ -41,11 +43,21 @@ public class CPoint {
 
         CPoint that = (CPoint) o;
 
-        if (left != null ? !left.equals(that.left) : that.left != null)
+        if (!Objects.equals(left, that.left))
             return false;
-        if (right != null ? !right.equals(that.right) : that.right != null)
+
+        if (!Objects.equals(right, that.right))
             return false;
-        return vertical != null ? vertical.equals(that.vertical) : that.vertical == null;
+
+        return Objects.equals(vertical, that.vertical);
+
+        /*if (left != null ? !left.equals(that.left) : that.left != null)
+            return false;*/
+
+        /*if (right != null ? !right.equals(that.right) : that.right != null)
+            return false;*/
+
+        //return vertical != null ? vertical.equals(that.vertical) : that.vertical == null;
 
     }
 

@@ -2,7 +2,7 @@ package model.game;
 
 import model.coordinate.*;
 import model.player.*;
-import view.*;
+import view.mainBoard.*;
 import view.mainBoard.ViewArrete;
 
 import java.util.ArrayList;
@@ -19,12 +19,12 @@ public class Arrete {
 
     private ViewArrete vue;
 
-    public Arrete(CArrete coord, BuildArrete type, Player player, Board board)
+    public Arrete(CArrete coor, BuildArrete type, Player playe, Board boar)
     {
-        coord = coord;
-        type = type;
-        player = player;
-        board = board;
+        coord = coor;
+        typeA = type;
+        player = playe;
+        board = boar;
     }
 
     public Arrete(CArrete coord, Board board)
@@ -58,10 +58,10 @@ public class Arrete {
         return vue;
     }
 
-    public void construire(Player player, BuildArrete type)
+    public void construire(Player playe, BuildArrete type)
     {
         typeA = type;
-        player = player;
+        player = playe;
     }
 
     public String peutConstruire(Player player, BuildArrete type)
@@ -100,7 +100,7 @@ public class Arrete {
 
         if (dx.equals(dy) || gx.equals(gy))
         {
-            if (board.getCasesVirtuelles(dx).getRessource() == Resources.Autoroute || board.getCasesVirtuelles(gx).getRessource() == Resources.Autoroute)
+            if (board.getCasesVirtuelles(dx).getRessource() == Resources.Vortex || board.getCasesVirtuelles(gx).getRessource() == Resources.Vortex)
             {
                 return true;
             }
@@ -110,7 +110,7 @@ public class Arrete {
             }
         } else if (gx.equals(vy) || dy.equals(vx))
         {
-            if (board.getCasesVirtuelles(dy).getRessource() == Resources.Autoroute || board.getCasesVirtuelles(gx).getRessource() == Resources.Autoroute)
+            if (board.getCasesVirtuelles(dy).getRessource() == Resources.Vortex || board.getCasesVirtuelles(gx).getRessource() == Resources.Vortex)
             {
                 return true;
 
@@ -121,7 +121,7 @@ public class Arrete {
             }
         } else if (vx.equals(gy) || vy.equals(dx))
         {
-            if (board.getCasesVirtuelles(vx).getRessource() == Resources.Autoroute || board.getCasesVirtuelles(dx).getRessource() == Resources.Autoroute)
+            if (board.getCasesVirtuelles(vx).getRessource() == Resources.Vortex || board.getCasesVirtuelles(dx).getRessource() == Resources.Vortex)
             {
                 return true;
             }

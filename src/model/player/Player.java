@@ -30,11 +30,11 @@ public class Player {
     private int nbCartesDeplacerVoleur;
     private Game jeu;
 
-    public Player(String nom, int num)
+    public Player(String nom1, int num1)
     {
-        nom = nom;
-        num = num;
-        avatar = "textures/Avatar" + num + ".jpg";
+        nom = nom1;
+        num = num1;
+        avatar = "/image/Player/Player" + num + ".png";
 
         switch(num)
         {

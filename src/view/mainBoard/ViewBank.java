@@ -140,7 +140,7 @@ public class ViewBank extends TitledPane {
 
             for(Resources r : Resources.values())
             {
-                if(!(r.equals(Resources.Autoroute)))
+                if(!(r.equals(Resources.Vortex)))
                 {
                     //Ajout des spinners
                     Spinner<Integer> spinTemp = new Spinner<Integer>(0,99,0);

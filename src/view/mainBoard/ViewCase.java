@@ -1,5 +1,6 @@
 package view.mainBoard;
 
+import sun.rmi.rmic.Main;
 import sun.security.acl.GroupImpl;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -28,17 +29,26 @@ public class ViewCase extends Group {
         setTranslateX(p_x + Constant.roadWidth/2);
         setTranslateY(p_y + Constant.roadWidth/2);
 
-        /*Affichage de l'image correspondant à la ressource*/
-        imgRessource = new ImageView("image/Haxagone/Hex" + cases.getRessource() + ".png");
+        //Affichage de l'image correspondant à la ressource
+        /*if(cases.getRessource().toString() != "Autoroute")
+        {
+
+        }*/
+
+        String s = "Hex"+cases.getRessource().toString()+".png";
+        System.out.println(s);
+        imgRessource = new ImageView("/image/Hexagone/" + s);
+        //imgRessource = new ImageView("/Users/joke/IdeaProjects/BackToTheCatan/src/image/Hexagone/Hex" + s + ".png");
+        //imgRessource = new ImageView("/image/Hexagone/HexBois.png");
+        //imgRessource = new ImageView(Main.getString("/Users/joke/IdeaProjects/BackToTheCatan/src/image/Hexagone/Hex" + cases.getRessource() + ".png"));
         imgRessource.setFitHeight(Constant.hexHeight - Constant.roadWidth);
         imgRessource.setFitWidth(Constant.hexWidth - Constant.roadWidth);
         setImageVoleur(cases.isVoleurPresent());
 
         getChildren().add(imgRessource);
 
-        if (cases.getRessource() != Resources.Autoroute)//on ajoute un numéro que s'il ne s'agit pas d'une case autoroute
+        if (cases.getRessource() != Resources.Vortex)//on ajoute un numéro que s'il ne s'agit pas d'une case autoroute
         {
-
             /*Affichage du numéro*/
             double milieuX = imgRessource.getFitWidth()/2;
             double milieuY = imgRessource.getFitHeight()/2;
@@ -64,14 +74,24 @@ public class ViewCase extends Group {
                 game.clicCase(cases, view);
             }
         });
+
     }
 
     public void setImageVoleur(boolean voleurPresent)
     {
         if(voleurPresent)
-            imgRessource.setImage(new Image("image/Player/Biff.png"));
+            imgRessource.setImage(new Image("/image/Player/Biff.png"));
         else
-            imgRessource.setImage(new Image("image/Haxagone/Hex" + cases.getRessource() + ".png"));
+        {
+            if(cases.getRessource().toString() != "Autoroute")
+            {
+                String s = "Hex"+cases.getRessource().toString()+".png";
+                //System.out.println(s);
+                imgRessource = new ImageView("/image/Hexagone/" + s);
+            }
+        }
+            //imgRessource.setImage(new Image("/image/Hexagone/HexBois.png"));
+            //imgRessource.setImage(new Image("/image/Hexagone/Hex" + cases.getRessource() + ".png"));
     }
 
 }

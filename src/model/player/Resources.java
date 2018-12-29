@@ -2,7 +2,7 @@ package model.player;
 
 public enum  Resources {
 
-    Autoroute,
+    //Autoroute,
     Vortex,
     Bois,
     Metal,
@@ -10,7 +10,7 @@ public enum  Resources {
     K7,
     Roue,
     Moteur,
-    SabreLaser,
+    Laser,
     Plutonium,
     Kryptonite;
 
@@ -18,8 +18,8 @@ public enum  Resources {
     {
         switch(r)
         {
-            case Autoroute:
-                return "Autoroute";
+            /*case Autoroute:
+                return "Autoroute";*/
             case Vortex:
                 return "Vortex";
             case Bois:
@@ -34,8 +34,8 @@ public enum  Resources {
                 return "Roue";
             case Moteur:
                 return "Moteur";
-            case SabreLaser:
-                return "Sabre Laser";
+            case Laser:
+                return "Laser";
             case Plutonium:
                 return "Plutonium";
             case Kryptonite:

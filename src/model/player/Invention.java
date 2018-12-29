@@ -28,7 +28,7 @@ public enum Invention implements Bank {
         @Override
         public HashMapRes cout(Epoch epoque)
         {
-            return new HashMapRes(Resources.Moteur, 3, Resources.SabreLaser, 6);
+            return new HashMapRes(Resources.Moteur, 3, Resources.Laser, 6);
         }
     },
 

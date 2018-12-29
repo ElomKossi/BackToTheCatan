@@ -9,7 +9,7 @@ public enum BuildArrete implements Bank {
         @Override
         public HashMapRes cout(Epoch epoque)
         {
-            return new HashMapRes(Resources.Metal, Epoch.getRes2(epoque));
+            return new HashMapRes(Resources.Bois, Epoch.getRes2(epoque));
         }
     },
 
@@ -18,7 +18,7 @@ public enum BuildArrete implements Bank {
         @Override
         public HashMapRes cout(Epoch epoque)
         {
-            return new HashMapRes(Resources.Metal, Resources.Metal, Epoch.getRes2(epoque));
+            return new HashMapRes(Resources.Bois, Resources.Bois, Epoch.getRes2(epoque));
         }
     },
 

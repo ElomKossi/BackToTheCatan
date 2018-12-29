@@ -34,7 +34,7 @@ public enum Epoch {
             case _1908:
                 return Resources.Roue;
             case _1985:
-                return Resources.SabreLaser;
+                return Resources.Laser;
             case _2015:
                 return Resources.Kryptonite;
         }

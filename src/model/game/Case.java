@@ -2,7 +2,6 @@ package model.game;
 
 import model.coordinate.*;
 import model.player.*;
-import view.game.*;
 import view.mainBoard.*;
 
 public class Case {
@@ -13,11 +12,11 @@ public class Case {
     private boolean voleurPresent;
     private ViewCase m_vue;
 
-    public Case(CCase coo, Resources res, int val )
+    public Case(CCase coo1, Resources res1, int val1 )
     {
-        coord = coo;
-        res = res;
-        val = val;
+        coord = coo1;
+        res = res1;
+        val = val1;
         if(val ==7)
             voleurPresent = true;
         else
@@ -27,7 +26,7 @@ public class Case {
     //Permet de créer des 'fausses' cases autour du plateau, elles n'apparaitront pas dans la vue
     public Case(CCase coo)
     {
-        this(coo, Resources.Autoroute, 0);
+        this(coo, Resources.Vortex, 0);
     }
 
     public CCase getCoo()

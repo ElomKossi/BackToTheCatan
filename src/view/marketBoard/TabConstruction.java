@@ -15,8 +15,8 @@ public class TabConstruction extends GridPane implements Etat {
 
     private Spinner<Integer> spinRoute;
     private Spinner <Integer> spinAutoroute;
-    private Spinner <Integer> spinVillage;
-    private Spinner <Integer> spinVille;
+    private Spinner <Integer> spinDelorean;
+    private Spinner <Integer> spinSDelorean;
     private Button  acheter;
     private Game game;
     private	Epoch epoque;
@@ -32,8 +32,8 @@ public class TabConstruction extends GridPane implements Etat {
         game = jeu;
         spinRoute = new Spinner<Integer>(0, 100, 0);
         spinAutoroute = new Spinner <Integer>(0, 100, 0);
-        spinVillage = new Spinner <Integer>(0, 100, 0);
-        spinVille = new Spinner <Integer>(0, 100, 0);
+        spinDelorean = new Spinner <Integer>(0, 100, 0);
+        spinSDelorean = new Spinner <Integer>(0, 100, 0);
 
         coutAutoroute = new Label("- 2 x Bois\n- 1 x "+Resources.toString(Epoch.getRes1(game.getEpoqueActuelle())));
         coutRoute = new Label("- 1 x Bois\n- 1 x "+Resources.toString(Epoch.getRes2(game.getEpoqueActuelle())));
@@ -48,7 +48,7 @@ public class TabConstruction extends GridPane implements Etat {
             @Override
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
 
-                if(!(game.testAchatConstructions(newValue, spinAutoroute.getValue(), spinVillage.getValue(), spinVille.getValue(),epoque,joueur)))
+                if(!(game.testAchatConstructions(newValue, spinAutoroute.getValue(), spinDelorean.getValue(), spinSDelorean.getValue(),epoque,joueur)))
                 {
                     spinRoute.decrement();
                 }
@@ -61,32 +61,32 @@ public class TabConstruction extends GridPane implements Etat {
             @Override
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue)
             {
-                if(!(game.testAchatConstructions(spinRoute.getValue(),newValue, spinVillage.getValue(),spinVille.getValue(),epoque,joueur)))
+                if(!(game.testAchatConstructions(spinRoute.getValue(),newValue, spinDelorean.getValue(),spinSDelorean.getValue(),epoque,joueur)))
                 {
                     spinAutoroute.decrement();
                 }
             }
         });
 
-        spinVillage.valueProperty().addListener(new ChangeListener<Integer>() {
+        spinDelorean.valueProperty().addListener(new ChangeListener<Integer>() {
 
             @Override
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
-                if(!(game.testAchatConstructions(spinRoute.getValue(), spinAutoroute.getValue(), newValue,  spinVille.getValue(),epoque,joueur)))
+                if(!(game.testAchatConstructions(spinRoute.getValue(), spinAutoroute.getValue(), newValue,  spinSDelorean.getValue(),epoque,joueur)))
                 {
-                    spinVillage.decrement();
+                    spinDelorean.decrement();
                 }
 
             }
         });
 
-        spinVille.valueProperty().addListener(new ChangeListener<Integer>() {
+        spinSDelorean.valueProperty().addListener(new ChangeListener<Integer>() {
 
             @Override
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
-                if(!(game.testAchatConstructions(spinRoute.getValue(), spinAutoroute.getValue(), spinVillage.getValue(), newValue,epoque,joueur)))
+                if(!(game.testAchatConstructions(spinRoute.getValue(), spinAutoroute.getValue(), spinDelorean.getValue(), newValue,epoque,joueur)))
                 {
-                    spinVille.decrement();
+                    spinSDelorean.decrement();
                 }
             }
         });
@@ -96,10 +96,10 @@ public class TabConstruction extends GridPane implements Etat {
                 joueur.acheter(BuildArrete.Route, spinRoute.getValue());
             if( spinAutoroute.getValue() > 0)
                 joueur.acheter(BuildArrete.Autoroute, spinAutoroute.getValue());
-            if( spinVillage.getValue() > 0)
-                joueur.acheter(BuildPoint.Deloreans, spinVillage.getValue());
-            if( spinVille.getValue() > 0)
-                joueur.acheter(BuildPoint.SuperDeloreans,  spinVille.getValue());
+            if( spinDelorean.getValue() > 0)
+                joueur.acheter(BuildPoint.Deloreans, spinDelorean.getValue());
+            if( spinSDelorean.getValue() > 0)
+                joueur.acheter(BuildPoint.SuperDeloreans,  spinSDelorean.getValue());
 
             ctj.update();
             reset();
@@ -111,17 +111,17 @@ public class TabConstruction extends GridPane implements Etat {
 
         add(new Label("Route"), 0, 0);
         add(new Label("Autoroute"), 0, 1);
-        add(new Label("Village"), 0, 2);
-        add(new Label("Ville"), 0, 3);
+        add(new Label("Delorean"), 0, 2);
+        add(new Label("Super Delorean"), 0, 3);
 
         spinRoute.setPrefWidth(50);
         spinAutoroute.setPrefWidth(50);
-        spinVillage.setPrefWidth(50);
-        spinVille.setPrefWidth(50);
+        spinDelorean.setPrefWidth(50);
+        spinSDelorean.setPrefWidth(50);
         add(spinRoute, 2, 0);
         add(spinAutoroute, 2, 1);
-        add(spinVillage, 2, 2);
-        add(spinVille, 2, 3);
+        add(spinDelorean, 2, 2);
+        add(spinSDelorean, 2, 3);
         add(coutRoute, 3, 0);
         add(coutAutoroute, 3, 1);
         add(coutDelorean, 3, 2);
@@ -135,8 +135,8 @@ public class TabConstruction extends GridPane implements Etat {
     {
         spinRoute.getValueFactory().setValue(0);
         spinAutoroute.getValueFactory().setValue(0);
-        spinVillage.getValueFactory().setValue(0);
-        spinVille.getValueFactory().setValue(0);
+        spinDelorean.getValueFactory().setValue(0);
+        spinSDelorean.getValueFactory().setValue(0);
     }
 
 

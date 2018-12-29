@@ -24,9 +24,9 @@ public class PlayerState extends GridPane implements Etat {
     private Label inventions;
     private Label cartes;
 
-    public PlayerState(Game game)
+    public PlayerState(Game game1)
     {
-        game = game;
+        game = game1;
         init();
         update();
     }
@@ -60,13 +60,9 @@ public class PlayerState extends GridPane implements Etat {
         utiliserCarteVoleur = new Button("Utiliser");
         utiliserCarteVoleur.setDefaultButton(true);
         utiliserCarteVoleur.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent event) {
-
                 game.setDeplacementVoleurActif(true);
-
-
             }
         });
         inventions = new Label("Inventions : ");
@@ -96,7 +92,7 @@ public class PlayerState extends GridPane implements Etat {
         add(new Label("K7 : " + j.nbRessource(Resources.K7)), 0, 6);
         add(new Label("Roue : " + j.nbRessource(Resources.Roue)), 0, 7);
         add(new Label("Moteur : " + j.nbRessource(Resources.Moteur)), 1, 3);
-        add(new Label("Sabre Laser : " + j.nbRessource(Resources.SabreLaser)), 1, 4);
+        add(new Label("Sabre Laser : " + j.nbRessource(Resources.Laser)), 1, 4);
         add(new Label("Plutonium : " + j.nbRessource(Resources.Plutonium)), 1, 5);
         add(new Label("Kryptonite : " + j.nbRessource(Resources.Kryptonite)), 1, 6);
 

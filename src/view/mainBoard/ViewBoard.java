@@ -3,7 +3,8 @@ package view.mainBoard;
 import javafx.scene.Group;
 import model.game.*;
 import model.coordinate.*;
-import view.mainBoard.*;
+
+import java.util.List;
 
 public class ViewBoard extends Group {
 
@@ -12,12 +13,7 @@ public class ViewBoard extends Group {
     private Group arretes;
     private Group points;
     private Board board;
-
     private Game game;
-
-    public Board getboard() {
-        return board;
-    }
 
     public ViewBoard(int x, int y, Board plateau, Game jeu)
     {
@@ -36,9 +32,13 @@ public class ViewBoard extends Group {
     {
         SimpleFloatCoo center;
         points = new Group();
+
         for (Point pt : board.getPoints())
         {
-            center = getCoord(pt.getCoo());
+            if(pt.getCoo() == null)
+                System.out.println("stop");
+
+            center = getCoordS(pt.getCoo());
             ViewPoint vue = new ViewPoint(pt,center.x, center.y, game);
             points.getChildren().add(vue);
             pt.setVue(vue);
@@ -51,10 +51,19 @@ public class ViewBoard extends Group {
         arretes = new Group();
         SimpleFloatCoo debut, fin;
         ViewArrete vueArete;
+
+        if(board.getEpoch() == null)
+            System.out.println("stop1");
+
         for (Arrete arrete : board.getArretes())
         {
-            debut = getCoord(arrete.getCoord().getDebut());
-            fin = getCoord(arrete.getCoord().getFin());
+            if(arrete.getCoord() == null)
+            {
+                System.out.println("stop");
+                //System.out.println(arrete.);
+            }
+            debut = getCoordS(arrete.getCoord().getDebut());
+            fin = getCoordS(arrete.getCoord().getFin());
             vueArete = new ViewArrete(arrete, debut.x, debut.y, fin.x, fin.y, game);
             arrete.setVue(vueArete);
             arretes.getChildren().add(vueArete);
@@ -64,20 +73,23 @@ public class ViewBoard extends Group {
 
     private void initCases()
     {
-        // Retrouve la taille du plateau
-        // /!\ doit être hexagonal
         int min, max;
-        min = max = board.getListCases().get(0).getCoo().getLine();
-        for (Case tuile : board.getListCases())
+        //min = max = board.getListCases().get(0).getCoo().getLine();
+        List<Case> c = board.getListCases();
+        if(c.isEmpty())
         {
-            int i;
-            i = tuile.getCoo().getLine();
-            if (i < min)
-                min = i;
-            if (i > max)
-                max = i;
+            Case cc = c.get(0);
+            min = max =  cc.getCoo().getLine();
+            for (Case tuile : board.getListCases())
+            {
+                int i = tuile.getCoo().getLine();
+                if (i < min)
+                    min = i;
+                if (i > max)
+                    max = i;
+            }
+            nbeCasesLarge = max - min + 1;
         }
-        nbeCasesLarge = max - min + 1;
 
         // Initialise toutes les cases
         cases = new Group();
@@ -87,7 +99,7 @@ public class ViewBoard extends Group {
         for (Case tuile : board.getListCases())
         {
             coo = tuile.getCoo();
-            simplefCoo = getCoord(coo);
+            simplefCoo = getCoordS(coo);
             viewCase = new ViewCase(simplefCoo.x - Constant.hexWidth/2, simplefCoo.y - Constant.hexHeight/2, tuile,game);
             cases.getChildren().add(viewCase);
             tuile.setVue(viewCase);
@@ -103,7 +115,7 @@ public class ViewBoard extends Group {
     /*
      * Retourne la position du centre de l'hexagone en fonction des coordonnés d'entrée
      */
-    private SimpleFloatCoo getCoord(CCase coordCase)
+    private SimpleFloatCoo getCoordS(CCase coordCase)
     {
         //Warning : Ne marche que pour une taille de 7
         int rayon = (nbeCasesLarge + 1)/2;//en nombre d'hexagones
@@ -119,12 +131,15 @@ public class ViewBoard extends Group {
     /*
      * Retourne la position du centre du point
      */
-    private SimpleFloatCoo getCoord(CPoint coordPoint)
+    private SimpleFloatCoo getCoordS(CPoint coordPoint)
     {
+        if(coordPoint == null)
+            System.out.println("stop1");
+
         SimpleFloatCoo c1, c2, c3;
-        c1 = getCoord(coordPoint.getLeft());
-        c2 = getCoord(coordPoint.getRight());
-        c3 = getCoord(coordPoint.getVertical());
+        c1 = getCoordS(coordPoint.getLeft());
+        c2 = getCoordS(coordPoint.getRight());
+        c3 = getCoordS(coordPoint.getVertical());
         return new SimpleFloatCoo((c1.x + c2.x + c3.x)/3, (c1.y + c2.y + c3.y)/3);
     }
 

@@ -3,6 +3,7 @@ package view.game;
 import java.io.File;
 import java.util.ArrayList;
 
+import com.sun.tools.hat.Main;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
@@ -90,21 +91,20 @@ public class Fenetre extends AnchorPane {
         gridJoueurs.setAlignment(Pos.CENTER);
         gridJoueurs.setPadding(new Insets(20, 10, 10, 10));
         bt_echangerList = new Button[game.getNbJoueurs()];
-        bt_echangerList[game.getNbJoueurs()].setDefaultButton(true);
+        //bt_echangerList[game.getNbJoueurs()].setDefaultButton(true);
 
         for (int i = 0; i < game.getNbJoueurs(); ++i)
         { // Initialise les images des joueurs en bas et les boutons échanger
             final int index = i;
-            ImageView avatar = new ImageView(game.getPlayer(i).getAvatar());
+            //ImageView avatar = new ImageView(game.getPlayer(i).getAvatar());
+            String s = game.getPlayer(i).getAvatar();
+            ImageView avatar = new ImageView(s);
             bt_echangerList[i] = new Button("Echanger");
             bt_echangerList[i].setDefaultButton(true);
             bt_echangerList[i].setOnAction(new EventHandler<ActionEvent>() {
-
                 @Override
                 public void handle(ActionEvent event) {
-
                     echange.show(game.getPlayer(), game.getPlayer(index));
-
                 }
             });
             avatar.setFitWidth(50);
