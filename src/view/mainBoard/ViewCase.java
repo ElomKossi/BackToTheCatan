@@ -1,7 +1,7 @@
 package view.mainBoard;
 
-import sun.rmi.rmic.Main;
-import sun.security.acl.GroupImpl;
+//import sun.rmi.rmic.Main;
+//import sun.security.acl.GroupImpl;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -49,14 +49,14 @@ public class ViewCase extends Group {
 
         if (cases.getRessource() != Resources.Vortex)//on ajoute un numéro que s'il ne s'agit pas d'une case autoroute
         {
-            /*Affichage du numéro*/
+            /*Affichage du numéro des hexagones*/
             double milieuX = imgRessource.getFitWidth()/2;
             double milieuY = imgRessource.getFitHeight()/2;
-            Circle cercleNoir = new Circle(milieuX, milieuY + 15, 10, Color.BLACK);
-            Circle cercleBlanc = new Circle(milieuX, milieuY + 15, 9, Color.WHITE);
+            Circle cercleNoir = new Circle(milieuX + 50, milieuY + 50, 13, Color.BLACK);
+            Circle cercleBlanc = new Circle(milieuX + 50, milieuY + 50, 11, Color.WHITE);
             Label numero = new Label("" + cases.getVal());
-            numero.setTranslateX(milieuX - 7);
-            numero.setTranslateY(milieuY + 7);
+            numero.setTranslateX(milieuX + 45);
+            numero.setTranslateY(milieuY + 40);
             numero.setTextAlignment(TextAlignment.CENTER);
             numero.setId("gras");
 

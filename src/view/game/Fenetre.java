@@ -3,7 +3,7 @@ package view.game;
 import java.io.File;
 import java.util.ArrayList;
 
-import com.sun.tools.hat.Main;
+//import com.sun.tools.hat.Main;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;

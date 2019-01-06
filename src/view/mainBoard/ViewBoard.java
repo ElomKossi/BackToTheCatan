@@ -100,7 +100,7 @@ public class ViewBoard extends Group {
         {
             coo = tuile.getCoo();
             simplefCoo = getCoordS(coo);
-            viewCase = new ViewCase(simplefCoo.x - Constant.hexWidth/2, simplefCoo.y - Constant.hexHeight/2, tuile,game);
+            viewCase = new ViewCase(simplefCoo.x - Constant.hexWidth/1.75f, simplefCoo.y - Constant.hexHeight/1.70f, tuile,game);//modifier la position des images des hexagones
             cases.getChildren().add(viewCase);
             tuile.setVue(viewCase);
         }
@@ -121,9 +121,9 @@ public class ViewBoard extends Group {
         int rayon = (nbeCasesLarge + 1)/2;//en nombre d'hexagones
         float x, y, x_offset, y_offset;
         //Positions de l'hexa (0,0) :
-        x_offset = (1 + (1.5f*(rayon - 1)))*Constant.hexWidth*2/(float) Math.sqrt(3);
+        x_offset = (1 + (1.6f*(rayon - 1)))*Constant.hexWidth*2/(float) Math.sqrt(3);
         y_offset = Constant.hexHeight/2*nbeCasesLarge;
-        x = x_offset + Constant.hexWidth/2*coordCase.getLine() + Constant.hexWidth*coordCase.getColumn();
+        x = x_offset + Constant.hexWidth/2*coordCase.getLine() + Constant.hexWidth*coordCase.getColumn();//permet de modifer la position des hexagones
         y = y_offset + Constant.hexHeight/2*1.5f*coordCase.getLine();
         return new SimpleFloatCoo(x, y);
     }

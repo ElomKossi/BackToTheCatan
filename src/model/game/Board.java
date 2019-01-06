@@ -231,7 +231,7 @@ public class Board {
         String[] tab = null;
         try
         {
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/joke/IdeaProjects/BackToTheCatan/src/image/BoardPlan/board1"));
+            BufferedReader reader = new BufferedReader(new FileReader("F:\\Projet L043\\BackToTheCatan\\src\\image\\BoardPlan\\board1"));
             for (int i = 0; i < size; i++)
             {
                 tab = reader.readLine().split(" ");
@@ -261,7 +261,7 @@ public class Board {
         String[] tab = null;
         try
         {
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/joke/IdeaProjects/BackToTheCatan/src/image/BoardPlan/board2"));
+            BufferedReader reader = new BufferedReader(new FileReader("F:\\Projet L043\\BackToTheCatan\\src\\image\\BoardPlan\\board2"));
             for (int i = 0; i < size; i++)
             {
                 tab = reader.readLine().split(" ");
